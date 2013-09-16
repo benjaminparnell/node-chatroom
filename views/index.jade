@@ -8,17 +8,18 @@ html
     script(src='/js/index.js')
     title Super Awesome Chatroom
   body
-    h1 Super Awesome Chatroom
-    div
-      div.inlineBlock
-        span Your name:
-          input(type="text", value="Anonymous")#name
-        br
-        form#messageForm
-          textarea(rows="4", cols="50", placeholder="Share something!", maxlength=200)#outgoingMessage
-          input(type="button", value="Share", disabled=true)#send
-      div.inlineBlock.topAligned
-        b Participants
-        br
-        div#participants
-    div#messages
+    div.wrapper
+      h1 Ben's Room
+      div
+        div#messages
+        footer
+          span Speaking as:
+            input(type="text", value="Anonymous")#name
+          br
+          form#messageForm
+            textarea(rows="4", cols="50", placeholder="Type here...", maxlength=200)#outgoingMessage
+            input(type="button", value="Send", disabled=true)#send
+        div.participants
+          b Participants
+          br
+          div#participants

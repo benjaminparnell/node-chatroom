@@ -1,17 +1,44 @@
-body {
-  padding: 3em;
+body, #outgoingMessage {
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
+  width: 100%;
 }
 
 textarea {
   resize: none;
 }
 
-.inlineBlock {
-  display: inline-block;
-}
-
 .topAligned {
   vertical-align: top;
+}
+
+.wrapper {
+  width: 900px;
+  margin: auto;
+}
+
+footer {
+}
+
+#messages {
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.participants {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 30px;
+}
+
+#outgoingMessage {
+  float: left;
+  width: 80%;
+}
+
+#send {
+  float: right;
+  width: 18%;
+  height: 97px;
 }

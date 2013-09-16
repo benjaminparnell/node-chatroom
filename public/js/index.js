@@ -35,7 +35,7 @@ function init() {
   socket.on('incomingMessage', function (data) {
     var message = data.message;
     var name = data.name;
-    $('#messages').prepend('<b>' + name + '</b><br />' + message + '<hr />');
+    $('#messages').append('<b>' + name + '</b><br />' + message + '<br /><br />');
   });
 
   socket.on('error', function (reason) {

@@ -1,33 +1,10 @@
-/* 
-  Module dependencies:
-  
-  - Express
-  - Http (to run Express)
-  - Underscore (because it's cool)
-  - Socket.IO
-  
-  It is a common practice to name the variables after the module name.
-  Ex: http is the "http" module, express is the "express" module, etc.
-  The only exception is Underscore, where we use, conveniently, an 
-  underscore. Oh, and "socket.io" is simply called io. Seriously, the 
-  rest should be named after its module name.
-
-*/
 var express = require("express")
   , app = express()
   , http = require("http").createServer(app)
   , io = require("socket.io").listen(http)
   , _ = require("underscore");
 
-/* 
-  The list of participants in our chatroom.
-  The format of each participant will be:
-  {
-    id: "sessionId",
-    name: "participantName"
-  }
-*/
-var rooms = ['Landing Pad', 'The Grid', "Ben's room"]
+
 var participants = []
 
 app.set("ipaddr", "127.0.0.1");
