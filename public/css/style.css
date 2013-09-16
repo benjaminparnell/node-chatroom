@@ -2,22 +2,21 @@ body, #outgoingMessage {
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   width: 100%;
+  background: #333;
+  color: #fff;
 }
 
-textarea {
+textarea, input {
   resize: none;
-}
-
-.topAligned {
-  vertical-align: top;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid grey;
 }
 
 .wrapper {
   width: 900px;
   margin: auto;
-}
-
-footer {
 }
 
 #messages {
@@ -35,10 +34,22 @@ footer {
 #outgoingMessage {
   float: left;
   width: 80%;
+  overflow-y: scroll;
+}
+
+#name {
+  background: #333;
+  color: #fff;
 }
 
 #send {
   float: right;
   width: 18%;
   height: 97px;
+  background: #333;
+}
+
+#send:enabled {
+  background:#AEEE00;
+  color:#000;
 }

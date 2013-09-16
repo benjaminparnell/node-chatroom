@@ -35,7 +35,8 @@ function init() {
   socket.on('incomingMessage', function (data) {
     var message = data.message;
     var name = data.name;
-    $('#messages').append('<b>' + name + '</b><br />' + message + '<br /><br />');
+    var time = timestamp();
+    $('#messages').append('<b>' + name + '</b> - ' + time + '<br />' + message + '<br /><br />');
   });
 
   socket.on('error', function (reason) {
@@ -44,6 +45,8 @@ function init() {
 
   function sendMessage() {
     var outgoingMessage = $('#outgoingMessage').val();
+    $("#outgoingMessage").val("");
+    $("#send").attr("disabled", true);
     var name = $('#name').val();
     $.ajax({
       url:  '/message',
@@ -60,7 +63,6 @@ function init() {
         return;
       }
       sendMessage();
-      $('#outgoingMessage').val('');
     }
   }
 
@@ -73,6 +75,28 @@ function init() {
   function nameFocusOut() {
     var name = $('#name').val();
     socket.emit('nameChange', {id: sessionId, name: name});
+  }
+
+  // Helper function to create a timestamp
+
+  function timestamp() {
+    var stamp = "";
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+
+    if(minutes < 10) {
+      minutes = '0' + minutes;
+    }
+
+    stamp += hours + ":" + minutes;
+
+    if(hours > 11) {
+      stamp += "PM";
+    } else {
+      stamp += "AM";
+    }
+    return stamp;
   }
 
   $('#outgoingMessage').on('keydown', outgoingMessageKeyDown);
