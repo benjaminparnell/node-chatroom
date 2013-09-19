@@ -4,12 +4,9 @@ var express = require("express")
   , io = require("socket.io").listen(http)
   , _ = require("underscore");
 
+app.use(express.logger());  
 
 var participants = []
-
-app.set("ipaddr", "127.0.0.1");
-
-app.set("port", 8080);
 
 app.set("views", __dirname + "/views");
 
@@ -63,6 +60,7 @@ io.sockets.on("connection", function(socket){
 
 });
 
-http.listen(app.get("port"), app.get("ipaddr"), function() {
-  console.log("Server up and running. Go to http://" + app.get("ipaddr") + ":" + app.get("port"));
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening to " + port);
 });
