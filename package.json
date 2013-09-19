@@ -6,5 +6,9 @@
     "jade": "*",
     "socket.io": "*",
     "underscore": "*"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
   }
 }
