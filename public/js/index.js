@@ -62,6 +62,8 @@ function init() {
       if ($('#outgoingMessage').val().trim().length <= 0) {
         return;
       }
+      var messages = document.getElementById("messages");
+      messages.scrollTop = messages.scrollHeight;
       sendMessage();
     }
   }
