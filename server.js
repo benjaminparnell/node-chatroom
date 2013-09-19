@@ -4,17 +4,27 @@ var express = require("express")
   , io = require("socket.io").listen(http)
   , _ = require("underscore");
 
-app.use(express.logger());  
 
-var participants = []
+var port = process.env.PORT || 5000;
+app.set("port", port);
+
+http.listen(port, function() {
+  console.log("Listening to lalal " + port);
+});
+
+// express config
 
 app.set("views", __dirname + "/views");
-
-app.set("view engine", "jade");
-
+app.set("view engine", "jade")
 app.use(express.static("public", __dirname + "/public"));
-
 app.use(express.bodyParser());
+
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
+var participants = []
 
 /* Server routing */
 
@@ -55,11 +65,4 @@ io.sockets.on("connection", function(socket){
     io.sockets.emit("userDisconnected", {id: socket.id, sender:"system"});
   });
 
-});
-
-var port = process.env.PORT || 5000;
-app.set("port", port);
-
-http.listen(app.get("port"), function() {
-  console.log("Listening to " + port);
 });
