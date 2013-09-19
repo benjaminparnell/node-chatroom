@@ -58,6 +58,8 @@ io.sockets.on("connection", function(socket){
 });
 
 var port = process.env.PORT || 5000;
-app.listen(port, function() {
+app.set("port", port);
+
+http.listen(app.get("port"), function() {
   console.log("Listening to " + port);
 });
