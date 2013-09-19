@@ -19,10 +19,7 @@ app.use(express.bodyParser());
 /* Server routing */
 
 app.get("/", function(request, response) {
-
-  //Render the view called "index"
   response.render("index");
-
 });
 
 //POST method to create a chat message
