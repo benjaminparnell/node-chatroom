@@ -11,7 +11,7 @@ body, #outgoingMessage {
 }
 
 body {
-  background: #F6F792;
+  background: #e3e3e3;
 }
 
 textarea, input {
@@ -31,6 +31,7 @@ textarea, input {
 #messages {
   height: 600px;
   overflow-y: scroll;
+  overflow-x: auto;
 }
 
 .participants {
@@ -38,6 +39,7 @@ textarea, input {
   top: 0;
   left: 0;
   padding: 30px;
+  width: 200px;
 }
 
 #outgoingMessage {
@@ -47,7 +49,6 @@ textarea, input {
 }
 
 #name {
-  background: #fff;
 }
 
 #send {

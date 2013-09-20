@@ -76,6 +76,11 @@ function init() {
 
   function nameFocusOut() {
     var name = $('#name').val();
+    if(name.trim().length <= 0) {
+      return;
+    } else if (name.length > 15) {
+      return;
+    }
     socket.emit('nameChange', {id: sessionId, name: name});
   }
 
