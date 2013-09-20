@@ -1,5 +1,9 @@
 function init() {
 
+  // Hide the notifications flash
+  var flash = $(".flash");
+  flash.hide();
+
   var serverBaseUrl = document.domain;
 
   var socket = io.connect(serverBaseUrl);
@@ -79,6 +83,7 @@ function init() {
     if(name.trim().length <= 0) {
       return;
     } else if (name.length > 15) {
+      displayFlash("That name is too long. Please choose a shorter one ( < 15 characters ).", "error");
       return;
     }
     socket.emit('nameChange', {id: sessionId, name: name});
@@ -106,11 +111,23 @@ function init() {
     return stamp;
   }
 
+  function displayFlash(message, type) {
+    flash.empty();
+    flash.addClass(type);
+    flash.slideDown('fast', function() {
+      flash.append("<p>" + message + "</p>");
+    });
+  }
+
+  flash.on('click', function() {
+    flash.slideUp('fast');
+  });
+
   $('#outgoingMessage').on('keydown', outgoingMessageKeyDown);
   $('#outgoingMessage').on('keyup', outgoingMessageKeyUp);
   $('#name').on('focusout', nameFocusOut);
   $('#send').on('click', sendMessage);
-
 }
 
-$(document).on('ready', init);
+// Call init() on document.ready
+$(function() { init(); });
