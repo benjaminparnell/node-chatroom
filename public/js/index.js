@@ -1,4 +1,4 @@
-function init() {
+$(function() {
 
   // Hide the notifications flash
   var flash = $(".flash");
@@ -9,14 +9,6 @@ function init() {
   var socket = io.connect(serverBaseUrl);
 
   var sessionId = '';
-
-  function updateParticipants(participants) {
-   $('#participants').html('');
-   for (var i = 0; i < participants.length; i++) {
-      $('#participants').append('<span id="' + participants[i].id + '">' +
-        participants[i].name + ' ' + (participants[i].id === sessionId ? '(You)' : '') + '<br /></span>');
-    } 
-  }
 
   socket.on('connect', function () {
     sessionId = socket.socket.sessionid;
@@ -81,6 +73,7 @@ function init() {
   function nameFocusOut() {
     var name = $('#name').val();
     if(name.trim().length <= 0) {
+      displayFlash("Cannot have an empty name. Please try again.", "error");
       return;
     } else if (name.length > 15) {
       displayFlash("That name is too long. Please choose a shorter one ( < 15 characters ).", "error");
@@ -89,7 +82,15 @@ function init() {
     socket.emit('nameChange', {id: sessionId, name: name});
   }
 
-  // Helper function to create a timestamp
+  // Helper functions
+
+  function updateParticipants(participants) {
+   $('#participants').html('');
+   for (var i = 0; i < participants.length; i++) {
+      $('#participants').append('<span id="' + participants[i].id + '">' +
+        participants[i].name + ' ' + (participants[i].id === sessionId ? '(You)' : '') + '<br /></span>');
+    } 
+  }
 
   function timestamp() {
     var stamp = "";
@@ -119,6 +120,8 @@ function init() {
     });
   }
 
+  // Event handlers
+
   flash.on('click', function() {
     flash.slideUp('fast');
   });
@@ -127,7 +130,5 @@ function init() {
   $('#outgoingMessage').on('keyup', outgoingMessageKeyUp);
   $('#name').on('focusout', nameFocusOut);
   $('#send').on('click', sendMessage);
-}
 
-// Call init() on document.ready
-$(function() { init(); });
+});

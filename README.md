@@ -9,4 +9,6 @@ Dependancies include:
 - Express
 - Jade
 
-Work in progress. Demo coming soon.
+Work in progress.
+
+Demo is available on Heroku [here](http://arcane-everglades-2135.herokuapp.com/).
